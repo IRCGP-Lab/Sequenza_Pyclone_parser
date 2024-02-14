@@ -20,7 +20,7 @@ snp_chr_pos=[]
 VAF=[]
 with open(mutation_file,'rb') as f_mutation:
     for ele in f_mutation.readlines():
-        ele = ele.decode('utf-8')
+        ele = ele.decode()
         if ele.startswith('#'):
             continue
         else:
