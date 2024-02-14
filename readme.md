@@ -47,7 +47,7 @@ Note that for an error-free run of the program, it is very important to **filter
 The segment file is part of the [Sequenza](https://bitbucket.org/sequenzatools/sequenza/src/master/) outputs.
 (The list of the output files can be seen in the Sequenza repository.)
 
-The input file is the **<sample_name>_segments.txt** of the outputs.
+The input file is the `<sample_name>_segments.txt` of the outputs.
 
 ## References
 
