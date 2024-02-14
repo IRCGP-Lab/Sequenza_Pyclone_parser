@@ -41,7 +41,7 @@ with gzip.open(mutation_file,'r') as f_mutation:
                     vaf=float(tumor_read_info[2])
                     VAF.append(vaf)
                 except:
-                    print(tumor_read_info)
+                    print(line[0])
                 chr_list.append(chr_name)
                 pos_list.append(pos_loc)
                 ref_allele.append(ref_n)
