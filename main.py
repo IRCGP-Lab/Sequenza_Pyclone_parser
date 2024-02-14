@@ -37,7 +37,11 @@ with gzip.open(mutation_file,'r') as f_mutation:
                 #print(tumor_read_info)
                 alt_count=int(tumor_read_info[1].split(',')[1])
                 ref_count=int(tumor_read_info[1].split(',')[0])
-                vaf=float(tumor_read_info[2])
+                try:
+                    vaf=float(tumor_read_info[2])
+                    VAF.append(vaf)
+                except:
+                    print(tumor_read_info)
                 chr_list.append(chr_name)
                 pos_list.append(pos_loc)
                 ref_allele.append(ref_n)
@@ -46,7 +50,7 @@ with gzip.open(mutation_file,'r') as f_mutation:
                 alt_reads.append(alt_count)
                 snp_chr_pos.append(chro_pos)
                 mutation_list.append(mut_id)
-                VAF.append(vaf)
+                # VAF.append(vaf)
             else:
                 continue
 
