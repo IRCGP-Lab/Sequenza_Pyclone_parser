@@ -20,32 +20,27 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
     with gzip.open(mutation_file, 'r') as f_mutation:
         for ele in f_mutation.readlines():
             ele = ele.decode()
-            if ele.startswith('#'):
-                continue
-            else:
+            if (not ele.startswith('#')) and (not ele.startswith("chrM")):
                 line = ele.strip().split('\t')
-                if not line[0].startswith("chrM"):
-                    chro_pos = line[0] + ':' + line[1]
-                    chr_name = line[0]
-                    pos_loc = line[1]
-                    ref_n = line[3]
-                    alt_n = line[4]
-                    mut_id = sample_name + ":" + chro_pos
-                    tumor_read_info = line[10].split(':')
-                    alt_count = int(tumor_read_info[1].split(',')[1])
-                    ref_count = int(tumor_read_info[1].split(',')[0])
-                    vaf = float(tumor_read_info[2])
-                    chr_list.append(chr_name)
-                    pos_list.append(pos_loc)
-                    ref_allele.append(ref_n)
-                    var_allele.append(alt_n)
-                    ref_reads.append(ref_count)
-                    alt_reads.append(alt_count)
-                    snp_chr_pos.append(chro_pos)
-                    mutation_list.append(mut_id)
-                    VAF.append(vaf)
-                else:
-                    continue
+                chro_pos = line[0] + ':' + line[1]
+                chr_name = line[0]
+                pos_loc = line[1]
+                ref_n = line[3]
+                alt_n = line[4]
+                mut_id = sample_name + ":" + chro_pos
+                tumor_read_info = line[10].split(':')
+                alt_count = int(tumor_read_info[1].split(',')[1])
+                ref_count = int(tumor_read_info[1].split(',')[0])
+                vaf = float(tumor_read_info[2])
+                chr_list.append(chr_name)
+                pos_list.append(pos_loc)
+                ref_allele.append(ref_n)
+                var_allele.append(alt_n)
+                ref_reads.append(ref_count)
+                alt_reads.append(alt_count)
+                snp_chr_pos.append(chro_pos)
+                mutation_list.append(mut_id)
+                VAF.append(vaf)
 
     data_snp = pd.DataFrame()
     data_snp["mutation_id"] = mutation_list
@@ -107,16 +102,13 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
 
 
 if __name__ == '__main__':
-    # Initialize the parser
     parser = argparse.ArgumentParser(description="This is a script for parsing arguments.")
 
-    # Add the arguments
     parser.add_argument("-m", "--mutation", required=True, help="Mutation file")
     parser.add_argument("-s", "--segment", required=True, help="Segment file")
     parser.add_argument("-n", "--name", required=True, help="Sample name")
     parser.add_argument("-o", "--out", required=True, help="Output file name")
 
-    # Parse the arguments
     args = parser.parse_args()
 
     convert(args.mutation, args.segment, args.name, args.out)
