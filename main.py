@@ -22,7 +22,7 @@ VAF=[]
 with gzip.open(mutation_file,'r') as f_mutation:
     for ele in f_mutation.readlines():
         ele = ele.decode()
-        if ele.startswith('#'):
+        if ele.startswith('#') or "_" in ele: #or ele.startswith("chrUn"):
             continue
         else:
             line=ele.strip().split('\t')
