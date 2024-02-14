@@ -20,10 +20,10 @@ snp_chr_pos=[]
 VAF=[]
 with open(mutation_file,'rb') as f_mutation:
     for ele in f_mutation.readlines():
-        if ele.startswith('#'):
+        if ele.startswith(b'#'):
             continue
         else:
-            line=ele.strip().split('\t')
+            line=ele.decode().strip().split('\t')
             if line[0]!="chrMT":
                 chro_pos=line[0]+':'+line[1]
                 chr_name=line[0]
