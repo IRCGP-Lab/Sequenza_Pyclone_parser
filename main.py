@@ -27,7 +27,7 @@ with gzip.open(mutation_file, 'r') as f_mutation:
             continue
         else:
             line = ele.strip().split('\t')
-            if not line[0].startswith("chrM"):  # or ele.startswith("chrUn")::
+            if not line[0].startswith("chrM"):
                 chro_pos = line[0] + ':' + line[1]
                 chr_name = line[0]
                 pos_loc = line[1]
@@ -43,6 +43,7 @@ with gzip.open(mutation_file, 'r') as f_mutation:
                     VAF.append(vaf)
                 except:
                     print(line[0])
+                    print(tumor_read_info)
                     continue
                 chr_list.append(chr_name)
                 pos_list.append(pos_loc)
