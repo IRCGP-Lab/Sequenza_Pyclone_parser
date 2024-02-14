@@ -4,6 +4,7 @@ from collections import defaultdict
 
 import pandas as pd
 import gzip
+import argparse
 
 
 def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
@@ -25,13 +26,9 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
                 line = ele.strip().split('\t')
                 if not line[0].startswith("chrM"):
                     chro_pos = line[0] + ':' + line[1]
-                    chr_name = line[0]
-                    pos_loc = line[1]
-                    ref_n = line[3]
-                    alt_n = line[4]
+                    chr_name, pos_loc, ref_n, alt_n = line[0:5]
                     mut_id = sample_name + ":" + chro_pos
                     tumor_read_info = line[10].split(':')
-                    # print(tumor_read_info)
                     alt_count = int(tumor_read_info[1].split(',')[1])
                     ref_count = int(tumor_read_info[1].split(',')[0])
                     vaf = float(tumor_read_info[2])
@@ -107,8 +104,16 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
 
 
 if __name__ == '__main__':
-    mutation_file = sys.argv[1]
-    segment_copynumber_file = sys.argv[2]
-    sample_name = sys.argv[3]
-    out_dir = sys.argv[4]
-    convert(mutation_file, segment_copynumber_file, sample_name, out_dir)
+    # Initialize the parser
+    parser = argparse.ArgumentParser(description="This is a script for parsing arguments.")
+
+    # Add the arguments
+    parser.add_argument("-m", "--mutation", required=True, help="Mutation file")
+    parser.add_argument("-s", "--segment", required=True, help="Segment file")
+    parser.add_argument("-n", "--name", required=True, help="Sample name")
+    parser.add_argument("-o", "--out", required=True, help="Output file name")
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    convert(args.mutation, args.segment, args.name, args.out)
