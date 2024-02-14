@@ -1,5 +1,7 @@
 #Process somatic mutation
 import sys
+from collections import defaultdict
+
 import pandas as pd
 import gzip
 
@@ -64,13 +66,12 @@ data_snp['var_counts']=alt_reads
 
 data_copynumber=pd.read_csv(segment_copynumber_file,header=0,sep='\t')
 data_cn_count=data_copynumber[['chromosome','start.pos','end.pos','CNt','A','B']]
-range_dic={}
+range_dic=defaultdict()
 for i in range(len(data_cn_count.chromosome)):
-    if data_cn_count.chromosome[i] not in range_dic.keys():
-        range_dic[data_cn_count.chromosome[i]]=[]
-        range_dic[data_cn_count.chromosome[i]].append([data_cn_count['start.pos'][i],data_cn_count['end.pos'][i],data_cn_count.CNt[i],data_cn_count.A[i],data_cn_count.B[i]])
-    else:
-        range_dic[data_cn_count.chromosome[i]].append([data_cn_count['start.pos'][i],data_cn_count['end.pos'][i],data_cn_count.CNt[i],data_cn_count.A[i],data_cn_count.B[i]])
+    range_dic[data_cn_count.chromosome[i]].append(
+        [data_cn_count['start.pos'][i], data_cn_count['end.pos'][i], data_cn_count.CNt[i], data_cn_count.A[i],
+         data_cn_count.B[i]])
+
 CNT_list=[]
 CNA_list=[]
 CNB_list=[]
