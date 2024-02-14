@@ -2,7 +2,7 @@
 
 ## About
 A parser to convert the output of the [Sequenza](https://bitbucket.org/sequenzatools/sequenza/src/master/) algorithm 
-as an input for the [Pyclone](https://github.com/Roth-Lab/pyclone-vi) algorithm.
+as an input for the [Pyclone-vi](https://github.com/Roth-Lab/pyclone-vi) algorithm.
 
 This script is based on the [Sequenze2Pyclone](https://github.com/ElizabethBorden/Run_fastclone_pipeline/blob/master/sequenza2pyclone.py) script.
 The original script was erroneous, probably due to compatibility issues among different versions of the packages.
@@ -31,6 +31,8 @@ here, the input parameters represent:
 
 
 Please read the [Input files](#input-files) section for the guide to generate each files.
+
+The output file specified with the `-o` option can directly be used as an input for pyclone-vi using the pipeline described in the [README page of the pyclone-vi repository](https://github.com/Roth-Lab/pyclone-vi/blob/master/README.md)
 
 ## Input files
 
