@@ -66,7 +66,7 @@ data_snp['var_counts']=alt_reads
 
 data_copynumber=pd.read_csv(segment_copynumber_file,header=0,sep='\t')
 data_cn_count=data_copynumber[['chromosome','start.pos','end.pos','CNt','A','B']]
-range_dic=defaultdict()
+range_dic=defaultdict(list)
 for i in range(len(data_cn_count.chromosome)):
     range_dic[data_cn_count.chromosome[i]].append(
         [data_cn_count['start.pos'][i], data_cn_count['end.pos'][i], data_cn_count.CNt[i], data_cn_count.A[i],
