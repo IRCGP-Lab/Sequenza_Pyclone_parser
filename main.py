@@ -27,7 +27,7 @@ with gzip.open(mutation_file, 'r') as f_mutation:
             continue
         else:
             line = ele.strip().split('\t')
-            if (not line[0].startswith("chrM")) and (len(line[0].split()) < 2):  # or ele.startswith("chrUn")::
+            if not line[0].startswith("chrM"):  # or ele.startswith("chrUn")::
                 chro_pos = line[0] + ':' + line[1]
                 chr_name = line[0]
                 pos_loc = line[1]
