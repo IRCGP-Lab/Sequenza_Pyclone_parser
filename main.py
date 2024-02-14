@@ -1,7 +1,4 @@
-# Process somatic mutation
-import sys
 from collections import defaultdict
-
 import pandas as pd
 import gzip
 import argparse
@@ -95,7 +92,7 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="This is a script for parsing arguments.")
+    parser = argparse.ArgumentParser(description="Sequenza_Pyclone_parser")
 
     parser.add_argument("-m", "--mutation", required=True, help="Mutation file")
     parser.add_argument("-s", "--segment", required=True, help="Segment file")
