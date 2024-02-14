@@ -8,15 +8,8 @@ import argparse
 
 
 def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
-    mutation_list = []
-    chr_list = []
-    pos_list = []
-    ref_allele = []
-    var_allele = []
-    ref_reads = []
-    alt_reads = []
-    snp_chr_pos = []
-    VAF = []
+    mutation_list, chr_list, pos_list, ref_allele, var_allele, ref_reads, alt_reads, snp_chr_pos, VAF =\
+        [], [], [], [], [], [], [], [], []
     with gzip.open(mutation_file, 'r') as f_mutation:
         for ele in f_mutation.readlines():
             ele = ele.decode()
@@ -107,7 +100,7 @@ if __name__ == '__main__':
     parser.add_argument("-m", "--mutation", required=True, help="Mutation file")
     parser.add_argument("-s", "--segment", required=True, help="Segment file")
     parser.add_argument("-n", "--name", required=True, help="Sample name")
-    parser.add_argument("-o", "--out", required=True, help="Output file name")
+    parser.add_argument("-o", "--out", required=True, help="Output directory")
 
     args = parser.parse_args()
 
