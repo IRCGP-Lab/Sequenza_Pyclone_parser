@@ -26,7 +26,10 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
                 line = ele.strip().split('\t')
                 if not line[0].startswith("chrM"):
                     chro_pos = line[0] + ':' + line[1]
-                    chr_name, pos_loc, ref_n, alt_n = line[0:5]
+                    chr_name = line[0]
+                    pos_loc = line[1]
+                    ref_n = line[3]
+                    alt_n = line[4]
                     mut_id = sample_name + ":" + chro_pos
                     tumor_read_info = line[10].split(':')
                     alt_count = int(tumor_read_info[1].split(',')[1])
