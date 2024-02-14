@@ -42,6 +42,7 @@ with gzip.open(mutation_file,'r') as f_mutation:
                     VAF.append(vaf)
                 except:
                     print(line[0])
+                    continue
                 chr_list.append(chr_name)
                 pos_list.append(pos_loc)
                 ref_allele.append(ref_n)
