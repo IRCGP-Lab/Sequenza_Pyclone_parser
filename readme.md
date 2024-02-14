@@ -13,7 +13,7 @@ The script has been edited for use, and has been tested functional as of Februar
 First clone the repository using the command
 
 ```bash
-$ git clone 
+$ git clone https://github.com/IRCGP-Lab/Sequenza_Pyclone_parser.git
 ```
 
 To use the program, simply use
