@@ -1,9 +1,9 @@
 # Sequenza Pyclone parser
 
-## About
 A parser to convert the output of the [Sequenza](https://bitbucket.org/sequenzatools/sequenza/src/master/) algorithm 
 as an input for the [Pyclone-vi](https://github.com/Roth-Lab/pyclone-vi) algorithm.
 
+## About
 This script is based on the [Sequenze2Pyclone](https://github.com/ElizabethBorden/Run_fastclone_pipeline/blob/master/sequenza2pyclone.py) script.
 The original script was erroneous, probably due to compatibility issues among different versions of the packages.
 The script has been edited for use, and has been tested functional as of February 14, 2024.
