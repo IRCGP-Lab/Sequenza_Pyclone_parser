@@ -92,7 +92,11 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Sequenza_Pyclone_parser")
+    parser = argparse.ArgumentParser(
+        description="Sequenza_Pyclone_parser.\n"
+                    "The input files need preprocessing according to the documentation.\n"
+                    "Use the readme.md file for a guide to select the input files."
+    )
 
     parser.add_argument("-m", "--mutation", required=True, help="Mutation file")
     parser.add_argument("-s", "--segment", required=True, help="Segment file")
