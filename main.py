@@ -18,7 +18,7 @@ ref_reads=[]
 alt_reads=[]
 snp_chr_pos=[]
 VAF=[]
-with open(mutation_file,'r') as f_mutation:
+with open(mutation_file,'rb') as f_mutation:
     for ele in f_mutation.readlines():
         if ele.startswith('#'):
             continue
