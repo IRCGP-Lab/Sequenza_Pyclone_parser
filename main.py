@@ -18,35 +18,35 @@ ref_reads=[]
 alt_reads=[]
 snp_chr_pos=[]
 VAF=[]
-f_mutation=open(mutation_file,'r')
-for ele in f_mutation:
-    if ele.startswith('#'):
-        continue
-    else:
-        line=ele.strip().split('\t')
-        if line[0]!="chrMT":
-            chro_pos=line[0]+':'+line[1]
-            chr_name=line[0]
-            pos_loc=line[1]
-            ref_n=line[3]
-            alt_n=line[4]
-            mut_id=sample_name+":"+chro_pos
-            tumor_read_info=line[10].split(':')
-            #print(tumor_read_info)
-            alt_count=int(tumor_read_info[1].split(',')[1])
-            ref_count=int(tumor_read_info[1].split(',')[0])
-            vaf=float(tumor_read_info[2])
-            chr_list.append(chr_name)
-            pos_list.append(pos_loc)
-            ref_allele.append(ref_n)
-            var_allele.append(alt_n)
-            ref_reads.append(ref_count)
-            alt_reads.append(alt_count)
-            snp_chr_pos.append(chro_pos)
-            mutation_list.append(mut_id)
-            VAF.append(vaf)
-        else:
+with open(mutation_file,'r') as f_mutation:
+    for ele in f_mutation.readlines():
+        if ele.startswith('#'):
             continue
+        else:
+            line=ele.strip().split('\t')
+            if line[0]!="chrMT":
+                chro_pos=line[0]+':'+line[1]
+                chr_name=line[0]
+                pos_loc=line[1]
+                ref_n=line[3]
+                alt_n=line[4]
+                mut_id=sample_name+":"+chro_pos
+                tumor_read_info=line[10].split(':')
+                #print(tumor_read_info)
+                alt_count=int(tumor_read_info[1].split(',')[1])
+                ref_count=int(tumor_read_info[1].split(',')[0])
+                vaf=float(tumor_read_info[2])
+                chr_list.append(chr_name)
+                pos_list.append(pos_loc)
+                ref_allele.append(ref_n)
+                var_allele.append(alt_n)
+                ref_reads.append(ref_count)
+                alt_reads.append(alt_count)
+                snp_chr_pos.append(chro_pos)
+                mutation_list.append(mut_id)
+                VAF.append(vaf)
+            else:
+                continue
 
 data_snp=pd.DataFrame()
 data_snp["mutation_id"]=mutation_list
