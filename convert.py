@@ -4,7 +4,7 @@ import gzip
 import argparse
 
 
-def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
+def convert(mutation_file, segment_copynumber_file, sample_name, out_path):
     mutation_list, chr_list, pos_list, ref_allele, var_allele, ref_reads, alt_reads, snp_chr_pos, VAF =\
         [], [], [], [], [], [], [], [], []
     with gzip.open(mutation_file, 'r') as f_mutation:
@@ -50,10 +50,8 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
     CNT_list = []
     CNA_list = []
     CNB_list = []
-    # print(chr_list)
     for i in range(len(data_snp.chrom)):
         chr_str = data_snp.chrom[i]
-        # print(data_snp)
         pos = pos_list[i]
         flag = 0
         for ele in range_dic[chr_str]:
@@ -88,7 +86,7 @@ def convert(mutation_file, segment_copynumber_file, sample_name, out_dir):
     del data_snp["chrom"]
     del data_snp["position"]
 
-    data_snp.to_csv(out_dir + "/" + sample_name + "_sequenza2pyclone.txt", header=True, sep="\t", index=False)
+    data_snp.to_csv(out_path, header=True, sep="\t", index=False)
 
 
 if __name__ == '__main__':
@@ -101,7 +99,7 @@ if __name__ == '__main__':
     parser.add_argument("-m", "--mutation", required=True, help="Mutation file")
     parser.add_argument("-s", "--segment", required=True, help="Segment file")
     parser.add_argument("-n", "--name", required=True, help="Sample name")
-    parser.add_argument("-o", "--out", required=True, help="Output directory")
+    parser.add_argument("-o", "--out", required=True, help="Output file path")
 
     args = parser.parse_args()
 
