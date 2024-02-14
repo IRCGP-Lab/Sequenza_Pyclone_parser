@@ -1,6 +1,7 @@
 #Process somatic mutation
 import sys
 import pandas as pd
+import gzip
 
 #neo_file=sys.argv[1]
 mutation_file=sys.argv[1]
@@ -18,7 +19,7 @@ ref_reads=[]
 alt_reads=[]
 snp_chr_pos=[]
 VAF=[]
-with open(mutation_file,'rb') as f_mutation:
+with gzip.open(mutation_file,'r') as f_mutation:
     for ele in f_mutation.readlines():
         ele = ele.decode()
         if ele.startswith('#'):
